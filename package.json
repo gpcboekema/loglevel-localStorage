@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "NPM plugin for JS logger loglevel which will log all messages to localStorage",
   "main": "loglevel-localStorage.js",
-  "scripts": {
-    "test": "mocha --reporter spec --compilers js:babel-core/register"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gpcboekema/loglevel-localStorage.git"
@@ -26,17 +23,6 @@
     "loglevel": "~1.2.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.10.1",
-    "babel-core": "^6.10.4",
-    "babel-preset-es2015": "^6.9.0",
-    "chai": "^3.5.0",
-    "loglevel": "^1.4.1",
-    "mocha": "^2.5.3",
-    "sinon": "^1.17.4"
-  },
-  "babel": {
-    "presets": [
-      "es2015-node5"
-    ]
+    "loglevel": "^1.4.1"
   }
 }
