@@ -1,6 +1,6 @@
 {
   "name": "loglevel-local-storage",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NPM plugin for JS logger loglevel which will log all messages to localStorage",
   "main": "loglevel-localStorage.js",
   "repository": {
