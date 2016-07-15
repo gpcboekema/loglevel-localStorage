@@ -1,4 +1,5 @@
-import _ from 'lodash';
+var _ = require('lodash');
+
 /**
  * @description
  * Extend loglevel with new plugin which will send log information to the log-sever
@@ -70,4 +71,4 @@ var loglevelLocalStorage = function loglevelLocalStorage(logger, options) {
     var _store = _.debounce(_storeLogStack, 250);
 };
 
-export default loglevelLocalStorage;
+module.exports = loglevelLocalStorage;
