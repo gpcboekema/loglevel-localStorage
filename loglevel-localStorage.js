@@ -13,7 +13,7 @@ var _ = require('lodash');
  * @param {string|number} [options.level=logger.levels.WARN] Log level. Either string or number, {@see logger.setLevel}.
  * @example
  * loglevelLocalStorage(log,{level:'info',prefix: function(logSev,message) {
- *     return '[' + new Date().toISOString() + '] ' + logSev + ': ' + message + '\n'
+ *     return '[' + new Date().toISOString() + '] ' + logSev + ': ' + message;
  * }})
  */
 
