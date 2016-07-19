@@ -33,20 +33,24 @@ var loglevelLocalStorage = function loglevelLocalStorage(logger, options) {
     _logger.methodFactory = function (methodName, logLevel) {
         var rawMethod = _originalFactory(methodName, logLevel);
 
-        return function (message) {
+        return function (/* ...message */) {
+            var args = Array.prototype.slice.call(arguments, 0);
+
+            var message;
             if (typeof _prefix === 'string') {
-                message = _prefix + message;
+                message = _prefix + args.join(' ');
             }
             else if (typeof _prefix === 'function') {
-                message = _prefix(methodName, message);
+                message = _prefix.apply(null, Array.prototype.concat.apply([methodName], args));
             }
             else {
-                message = methodName + ': ' + message;
+                message = methodName + ': ' + args.join(' ');
             }
 
             if (_callOriginal) {
-                rawMethod(message);
+                rawMethod.apply(null, arguments);
             }
+
             // Push to stack
             _logStack.push(message);
 

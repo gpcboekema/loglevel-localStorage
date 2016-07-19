@@ -26,9 +26,32 @@ Extend loglevel with new plugin which will send log information to the log-sever
 
 **Example**
 ```js
-import loglevelLocalStorage from '../loglevel-localStorage.js';
+                                                
+var debuglog = require('loglevel'); // import debuglog from 'loglevel';
+var loglevelLocalStorage = require('../loglevel-localStorage.js'); // import loglevelLocalStorage from 'loglevel-local-storage';
  
-loglevelLocalStorage(debuglog,{level:'warn',prefix: function(logSev,message) {
-    return '[' + new Date().toISOString() + '] ' + logSev + ': ' + message + '\n'
-}, callOriginal: true, maxLogStackSize: 10})
+debuglog.setLevel(1);
+ 
+loglevelLocalStorage(debuglog, {
+    level: 'info',
+    prefix: function (logSev /* , ...message */) {
+        var message = Array.prototype.slice.call(arguments, 1);
+        return '[' + new Date().toISOString() + '] ' + logSev + ': ' + message.join(' ');
+    },
+    callOriginal: true,
+    maxLogStackSize: 10
+});
+ 
+var foo = function () {
+    var test = "123";
+    debuglog.info("test", test);
+};
+ 
+foo();
+ 
+// output console (callOriginal = true):  
+// test 123
+// output localStorage (see prefix function above):
+// [2016-07-19T15:39:18.110Z] info: test 123 
+
 ```
