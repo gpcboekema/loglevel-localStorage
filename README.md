@@ -52,6 +52,22 @@ foo();
 // output console (callOriginal = true):  
 // test 123
 // output localStorage (see prefix function above):
-// [2016-07-19T15:39:18.110Z] info: test 123 
+// [2016-07-19T15:39:18.110Z] info: test 123
+ 
+// ES6 example:
+import debuglog from 'loglevel';
+import loglevelLocalStorage from 'loglevel-local-storage';
 
+debuglog.setLevel("DEBUG");
+loglevelLocalStorage(debuglog, {
+    level: 'info',
+    prefix(logSev, ...args) {
+        // Stringify for storage in localStorage
+        const newArgs = args.map(arg => ((typeof arg === 'object' && !(arg instanceof Date)) ? JSON.stringify(arg) : arg));
+        return `[${new Date().toISOString()}] ${logSev}: ${newArgs.join(' ')}`;
+    },
+    callOriginal: true,
+    maxLogStackSize: 10,
+});
+ 
 ```
