@@ -27,7 +27,7 @@ var loglevelLocalStorage = function loglevelLocalStorage(logger, options) {
         _prefix = options && options.prefix,
         _level = options && options.level || _logger.levels.WARN,
         _originalFactory = _logger.methodFactory,
-        _logStack = [],
+        _logStack = options.persistentLog? JSON.parse(localStorage.getItem(_storeKey) || '[]') : [],
         _logStackLocalStorage = [];
 
     _logger.methodFactory = function (methodName, logLevel) {
