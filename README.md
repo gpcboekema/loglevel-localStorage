@@ -74,6 +74,7 @@ loglevelLocalStorage(debuglog, {
 ```
 
 **Another Prefix Example**
+
 You may keep the log in a JSON format to be able to parse later
 ```js
     ...
