@@ -23,6 +23,7 @@ Extend loglevel with new plugin which will send log information to the log-sever
 | \[options.callOriginal=<code>false</code>\] | <code>Bool</code> | If set to true - original loglevel method for logging would be called |
 | \[options.prefix=<code>null</code>\] | <code>string</code> \| <code>function</code> | Prefix for all log messages. Either string or function wich should return string and accept log severity and message as parameters |
 | \[options.level=<code>logger.levels.WARN</code>\] | <code>string</code> \| <code>number</code> | Log level. Either string or number, See [loglevel](https://github.com/pimterry/loglevel).setLevel. |
+| \[options.persistentLog=<code>false</code>\] | <code>Bool</code> | If set to true - persist log entries between instantiations of the same log stack. |
 
 **Example**
 ```js
@@ -70,4 +71,15 @@ loglevelLocalStorage(debuglog, {
     maxLogStackSize: 10,
 });
  
+```
+
+**Another Prefix Example**
+You may keep the log in a JSON format to be able to parse later
+```js
+    ...
+    prefix: function (logLevel) {
+        var message = Array.prototype.slice.call(arguments, 1);
+        return [new Date(), logLevel, message];
+    }
+    ...
 ```
